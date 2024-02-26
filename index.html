@@ -9,6 +9,7 @@
 
 <body>
   <div class="container">
+    <div class="loading">Пожалуйста подождите, загружаю комментарии...</div>
     <ul id="list" class="comments"></ul>
     <div class="add-form">
       <input id="name-input" type="text" class="add-form-name" placeholder="Введите ваше имя" />
@@ -30,15 +31,17 @@
   const nameInputElement = document.getElementById("name-input");
   const textAreaElement = document.getElementById("text-input");
   const buttonElement = document.getElementById("write-button");
+  const loadingElement = document.querySelector(".loading");
 
   //Функция GET-запроса (получение с сервера)
   function fetchAndCommentsRender() {
-    fetch("https://wedev-api.sky.pro/api/v1/aleksander-gavrikov/comments", {
+    return fetch("https://wedev-api.sky.pro/api/v1/aleksander-gavrikov/comments", {
       method: "GET"
     })
       //исполнить ниже, когда придёт ответ от сервера (then)
       .then((response) => {
-        return response.json()
+        loadingElement.style.display = "none";
+        return response.json();
       })
       .then((responseData) => {
         const appComments = responseData.comments.map((comment) => {
@@ -58,7 +61,7 @@
 
   // Функция для рендеринга списка комментариев
   function renderComments() {
-    listElement.innerHTML = commentsData.map((comment, index) => {
+      listElement.innerHTML = commentsData.map((comment, index) => {
       const textWithHTML = comment.text.replaceAll("QUOTE_BEGIN", "<div class='quote'>").replaceAll("QUOTE_END", "</div>");
       return `
             <li data-index="${index}" class="comment">
@@ -79,9 +82,9 @@
         `;
     }).join('');
 
-
     attachLikeButtonHandler();
     initEditComments();
+
   }
   fetchAndCommentsRender();
   renderComments();
