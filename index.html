@@ -11,6 +11,7 @@
   <div class="container">
     <div class="loading">Пожалуйста подождите, загружаю комментарии...</div>
     <ul id="list" class="comments"></ul>
+    <div id="add-comment" class="add-comment-text">Комментарий добавляется...</div>
     <div class="add-form">
       <input id="name-input" type="text" class="add-form-name" placeholder="Введите ваше имя" />
       <textarea id="text-input" type="textarea" class="add-form-text" placeholder="Введите ваш коментарий"
@@ -32,9 +33,12 @@
   const textAreaElement = document.getElementById("text-input");
   const buttonElement = document.getElementById("write-button");
   const loadingElement = document.querySelector(".loading");
+  const addFormElement = document.querySelector(".add-form");
+  const addCommentElement = document.getElementById("add-comment");
 
   //Функция GET-запроса (получение с сервера)
   function fetchAndCommentsRender() {
+    addCommentElement.style.display = "none";
     return fetch("https://wedev-api.sky.pro/api/v1/aleksander-gavrikov/comments", {
       method: "GET"
     })
@@ -55,13 +59,14 @@
         });
 
         commentsData = appComments;
+        addFormElement.style.display = "block"; // Показать форму после
         renderComments();
       });
   };
 
   // Функция для рендеринга списка комментариев
   function renderComments() {
-      listElement.innerHTML = commentsData.map((comment, index) => {
+    listElement.innerHTML = commentsData.map((comment, index) => {
       const textWithHTML = comment.text.replaceAll("QUOTE_BEGIN", "<div class='quote'>").replaceAll("QUOTE_END", "</div>");
       return `
             <li data-index="${index}" class="comment">
@@ -103,6 +108,12 @@
       textAreaElement.classList.add("error");
       return;
     }
+
+    // Скрыть форму добавления и показать сообщение о добавлении
+    addFormElement.style.display = "none";
+    addCommentElement.textContent = "Комментарий добавляется...";
+    addCommentElement.style.display = "block";
+
     //POST-запрос (отправка на сервер)
     fetch("https://wedev-api.sky.pro/api/v1/aleksander-gavrikov/comments", {
       method: "POST",
@@ -126,13 +137,12 @@
         fetchAndCommentsRender();
       });
 
+    renderComments();
+
+    nameInputElement.value = "";
+    textAreaElement.value = "";
+
   });
-
-  renderComments();
-
-  nameInputElement.value = "";
-  textAreaElement.value = "";
-
 
   function attachLikeButtonHandler() {
     const likeButtons = document.querySelectorAll('.like-button');
