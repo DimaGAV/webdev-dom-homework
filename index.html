@@ -39,7 +39,7 @@
   //Функция GET-запроса (получение с сервера)
   function fetchAndCommentsRender() {
     addCommentElement.style.display = "none";
-    return fetch("https://wedev-api.sky.pro/api/v1/aleksander-gavrikov/comments", {
+    fetch("https://wedev-api.sky.pro/api/v1/aleksander-gavrikov/comments", {
       method: "GET"
     })
       //исполнить ниже, когда придёт ответ от сервера (then)
@@ -94,7 +94,22 @@
   fetchAndCommentsRender();
   renderComments();
 
-  buttonElement.addEventListener('click', () => {
+const postComment = (text, name) => {
+  
+};
+  
+const handlePostClick = () => {
+    //...
+    postComment(textAreaElement.value, nameInputElement.value)
+      .catch((error) => {
+        if (error.message === "Сервер упал") {
+          handlePostClick();
+        }
+      });
+    //...
+  };
+
+  buttonElement.addEventListener('click', handlePostClick(), () => {
 
     nameInputElement.classList.remove("error");
     textAreaElement.classList.remove("error");
@@ -127,24 +142,61 @@
           .replaceAll("&", "&amp;")
           .replaceAll("<", "&lt;")
           .replaceAll(">", "&gt;")
-          .replaceAll('"', "&quot;")
+          .replaceAll('"', "&quot;"),
+        forceError: true,
       })
     })
       .then((response) => {
-        return response.json()
+
+        if (response.status === 500) {
+          throw new Error("Сервер упал");
+        }
+
+        if (response.status === 400) {
+          throw new Error("Ошибочный запрос");
+        }
+        else {
+          return response.json()
+        }
       })
       .then(() => {
         fetchAndCommentsRender();
+      })
+
+      .then(() => {
+        nameInputElement.value = "";
+        textAreaElement.value = "";
+      })
+      .catch((error) => {
+
+        // Обработка ошибки сервера
+        if (error.message === "Сервер упал") {
+          alert("Сервер сломался, попробуй позже");
+          showAddForm();
+          return;
+        }
+
+        // Обработка ошибки пользователя
+        if (error.message === "Ошибочный запрос") {
+          alert("Имя и комментарий должны быть не короче 3 символов");
+          showAddForm();
+          return;
+        }
+
+        alert("Кажется, у вас сломался интернет, попробуйте позже");
+
+        showAddForm();
       });
 
     renderComments();
-
-    nameInputElement.value = "";
-    textAreaElement.value = "";
-
   });
 
-  function attachLikeButtonHandler() {
+  function showAddForm() {
+    addFormElement.style.display = "block";
+    addCommentElement.style.display = "none";
+  }
+
+    function attachLikeButtonHandler() {
     const likeButtons = document.querySelectorAll('.like-button');
     for (const button of likeButtons) {
       button.addEventListener('click', (event) => {
@@ -159,7 +211,6 @@
             commentsData[index].likes++;
           }
           commentsData[index].isLiked = !isActive;
-          // button.classList.remove('-loading-like');
           renderComments();
         });
       });
