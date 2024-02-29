@@ -28,6 +28,7 @@
   // Структура данных для комментариев
   let commentsData = [];
 
+  // Объявление переменных
   const listElement = document.getElementById("list");
   const nameInputElement = document.getElementById("name-input");
   const textAreaElement = document.getElementById("text-input");
@@ -94,43 +95,9 @@
   fetchAndCommentsRender();
   renderComments();
 
-const postComment = (text, name) => {
-  
-};
-  
-const handlePostClick = () => {
-    //...
-    postComment(textAreaElement.value, nameInputElement.value)
-      .catch((error) => {
-        if (error.message === "Сервер упал") {
-          handlePostClick();
-        }
-      });
-    //...
-  };
-
-  buttonElement.addEventListener('click', handlePostClick(), () => {
-
-    nameInputElement.classList.remove("error");
-    textAreaElement.classList.remove("error");
-
-    if (!nameInputElement.value || nameInputElement.value.trim().length === 0) {
-      nameInputElement.classList.add("error");
-      return;
-    }
-
-    else if (!textAreaElement.value || textAreaElement.value.trim().length === 0) {
-      textAreaElement.classList.add("error");
-      return;
-    }
-
-    // Скрыть форму добавления и показать сообщение о добавлении
-    addFormElement.style.display = "none";
-    addCommentElement.textContent = "Комментарий добавляется...";
-    addCommentElement.style.display = "block";
-
-    //POST-запрос (отправка на сервер)
-    fetch("https://wedev-api.sky.pro/api/v1/aleksander-gavrikov/comments", {
+  const postComment = (text, name) => {
+    //POST-запрос с цепочкой промисов (отправка на сервер)
+    return fetch("https://wedev-api.sky.pro/api/v1/aleksander-gavrikov/comments", {
       method: "POST",
       body: JSON.stringify({
         name: nameInputElement.value
@@ -161,42 +128,67 @@ const handlePostClick = () => {
       })
       .then(() => {
         fetchAndCommentsRender();
-      })
-
-      .then(() => {
         nameInputElement.value = "";
         textAreaElement.value = "";
       })
+  };
+
+  // функция проверки полей и обработка кодов API
+  const handlePostClick = () => {
+
+    nameInputElement.classList.remove("error");
+    textAreaElement.classList.remove("error");
+
+    if (!nameInputElement.value || nameInputElement.value.trim().length === 0) {
+      nameInputElement.classList.add("error");
+      return;
+    }
+
+    else if (!textAreaElement.value || textAreaElement.value.trim().length === 0) {
+      textAreaElement.classList.add("error");
+      return;
+    }
+
+    // Скрыть форму добавления и показать сообщение о добавлении
+    addFormElement.style.display = "none";
+    addCommentElement.textContent = "Комментарий добавляется...";
+    addCommentElement.style.display = "block";
+
+    postComment(textAreaElement.value, nameInputElement.value)
+
       .catch((error) => {
 
         // Обработка ошибки сервера
         if (error.message === "Сервер упал") {
-          alert("Сервер сломался, попробуй позже");
-          showAddForm();
-          return;
+          handlePostClick();
         }
 
         // Обработка ошибки пользователя
-        if (error.message === "Ошибочный запрос") {
+        else if (error.message === "Ошибочный запрос") {
           alert("Имя и комментарий должны быть не короче 3 символов");
           showAddForm();
           return;
         }
 
-        alert("Кажется, у вас сломался интернет, попробуйте позже");
-
-        showAddForm();
+        else {
+          alert("Кажется, у вас сломался интернет, попробуйте позже");
+          showAddForm();
+        }
       });
 
     renderComments();
-  });
+  };
 
+
+  buttonElement.addEventListener('click', handlePostClick);
+
+  // Показ заполненной формы
   function showAddForm() {
     addFormElement.style.display = "block";
     addCommentElement.style.display = "none";
   }
 
-    function attachLikeButtonHandler() {
+  function attachLikeButtonHandler() {
     const likeButtons = document.querySelectorAll('.like-button');
     for (const button of likeButtons) {
       button.addEventListener('click', (event) => {
