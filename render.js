@@ -1,4 +1,6 @@
-import { attachLikeButtonHandler } from "./likebuttons.js"
+import { attachLikeButtonHandler } from "./likebuttons.js";
+import { initEditComments } from "./editcomment.js";
+
 export function renderComments(commentsData) {
 
     const listElement = document.getElementById("list");
@@ -25,4 +27,5 @@ export function renderComments(commentsData) {
     }).join('');
 
     attachLikeButtonHandler(commentsData);
+    initEditComments(commentsData);
 }
