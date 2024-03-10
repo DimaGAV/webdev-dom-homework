@@ -25,7 +25,7 @@ export function postListElement( {name, text} ) {
           .replaceAll("<", "&lt;")
           .replaceAll(">", "&gt;")
           .replaceAll('"', "&quot;"),
-        forceError: true,
+        // forceError: true,
       })
     })
       .then((response) => {
