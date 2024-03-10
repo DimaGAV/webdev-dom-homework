@@ -62,8 +62,8 @@ function renderComments() {
 fetchAndCommentsRender();
 renderComments();
 
-function postComment () {
-    postListElement( {name: nameInputElement.value, text: textAreaElement.value } )
+const postComment = () => {
+   return postListElement( {name: nameInputElement.value, text: textAreaElement.value } )
     .then(() => {
         fetchAndCommentsRender();
         nameInputElement.value = "";
