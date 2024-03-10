@@ -88,7 +88,6 @@ const handlePostClick = () => {
     renderComments(commentsData);
 };
 
-
 buttonElement.addEventListener('click', handlePostClick);
 
 // Показ заполненной формы
