@@ -1,3 +1,4 @@
+import { attachLikeButtonHandler } from "./likebuttons.js"
 export function renderComments(commentsData) {
 
     const listElement = document.getElementById("list");
@@ -23,49 +24,5 @@ export function renderComments(commentsData) {
         `;
     }).join('');
 
-    attachLikeButtonHandler();
-    initEditComments();
-}
-
-function attachLikeButtonHandler() {
-    const likeButtons = document.querySelectorAll('.like-button');
-    for (const button of likeButtons) {
-        button.addEventListener('click', (event) => {
-            event.stopPropagation();
-            button.classList.add('-loading-like');
-            delay(2000).then(() => {
-                const index = parseInt(button.dataset.index);
-                const isActive = commentsData[index].isLiked;
-                if (isActive) {
-                    commentsData[index].likes--;
-                } else {
-                    commentsData[index].likes++;
-                }
-                commentsData[index].isLiked = !isActive;
-                renderComments(commentsData);
-            });
-        });
-    }
-}
-
-
-function delay(interval = 300) {
-    return new Promise((resolve) => {
-        setTimeout(() => {
-            resolve();
-        }, interval);
-    });
-}
-
-function initEditComments() {
-    const editComments = document.querySelectorAll('.comment');
-    for (const editComment of editComments) {
-        editComment.addEventListener('click', () => {
-            const index = editComment.dataset.index;
-            const commentAuthor = `QUOTE_BEGIN${commentsData[index].author}:`;
-            const commentText = `${commentsData[index].text}QUOTE_END`;
-            textAreaElement.value = `${commentAuthor}\n${commentText}\n\n`;
-            renderComments(commentsData);
-        })
-    }
+    attachLikeButtonHandler(commentsData);
 }

@@ -2,6 +2,7 @@ import { getListElements } from "./api.js";
 import { postListElement } from "./api.js";
 import { renderComments } from "./render.js";
 
+
 // Структура данных для комментариев
 let commentsData = [];
 
