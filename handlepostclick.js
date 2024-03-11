@@ -1,6 +1,4 @@
 import { postComment } from "./postcomment.js";
-// import { renderComments } from "./render.js";
-// import { fetchAndCommentsRender } from "./fetchnrender.js";
 import { addCommentElement, addFormElement, nameInputElement, textAreaElement} from "./main.js";
 
 
@@ -46,7 +44,6 @@ export const handlePostClick = () => {
             }
         });
 
-        // fetchAndCommentsRender();
 };
 
 // Показ заполненной формы
@@ -54,6 +51,3 @@ function showAddForm() {
     addFormElement.style.display = "flex";
     addCommentElement.style.display = "none";
 }
-
-
-
