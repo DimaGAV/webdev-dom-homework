@@ -1,6 +1,7 @@
 import { postComment } from "./postcomment.js";
-import { renderComments } from "./render.js";
-import { addCommentElement, addFormElement, nameInputElement, textAreaElement, commentsData} from "./main.js";
+// import { renderComments } from "./render.js";
+// import { fetchAndCommentsRender } from "./fetchnrender.js";
+import { addCommentElement, addFormElement, nameInputElement, textAreaElement} from "./main.js";
 
 
 // функция проверки полей и обработка кодов API
@@ -45,7 +46,7 @@ export const handlePostClick = () => {
             }
         });
 
-    renderComments(commentsData);
+        // fetchAndCommentsRender();
 };
 
 // Показ заполненной формы

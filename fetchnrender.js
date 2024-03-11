@@ -1,6 +1,5 @@
 import { getListElements } from "./api.js";
-import { addCommentElement } from "./main.js";
-import { addFormElement } from "./main.js";
+import { addCommentElement, addFormElement,  } from "./main.js";
 import { renderComments } from "./render.js";
 
 
