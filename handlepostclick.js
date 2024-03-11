@@ -8,7 +8,6 @@ import {textAreaElement} from "./main.js";
 
 // функция проверки полей и обработка кодов API
 export const handlePostClick = () => {
-
     nameInputElement.classList.remove("error");
     textAreaElement.classList.remove("error");
 
@@ -33,7 +32,7 @@ export const handlePostClick = () => {
 
             // Обработка ошибки сервера
             if (error.message === "Сервер упал") {
-                handlePostClick;
+                handlePostClick();
             }
 
             // Обработка ошибки пользователя
