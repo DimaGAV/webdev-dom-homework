@@ -2,16 +2,16 @@ import { getListElements } from "./api.js";
 import { postListElement } from "./api.js";
 import { renderComments } from "./render.js";
 
+// Объявление переменных
+export const nameInputElement = document.getElementById("name-input");
+export const textAreaElement = document.getElementById("text-input");
+export const addFormElement = document.querySelector(".add-form");
+export const addCommentElement = document.getElementById("add-comment");
+
+const buttonElement = document.getElementById("write-button");
 
 // Структура данных для комментариев
 let commentsData = [];
-
-// Объявление переменных
-const nameInputElement = document.getElementById("name-input");
-const textAreaElement = document.getElementById("text-input");
-const buttonElement = document.getElementById("write-button");
-const addFormElement = document.querySelector(".add-form");
-const addCommentElement = document.getElementById("add-comment");
 
 //Функция GET-запроса (получение с сервера)
 function fetchAndCommentsRender() {
