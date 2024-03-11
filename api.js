@@ -19,7 +19,7 @@ export function postListElement({ name, text }) {
         body: JSON.stringify({
             name: sanitizeHtml(name),
             text: sanitizeHtml(text),
-            // forceError: true,
+            forceError: true,
         })
     })
         .then((response) => {
