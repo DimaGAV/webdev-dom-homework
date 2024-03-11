@@ -3,6 +3,7 @@ import { handlePostClick } from "./handlepostclick.js";
 
 // Объявление переменных
 let commentsData = [];
+export {commentsData};
 export const nameInputElement = document.getElementById("name-input");
 export const textAreaElement = document.getElementById("text-input");
 export const addFormElement = document.querySelector(".add-form");
@@ -11,4 +12,4 @@ const buttonElement = document.getElementById("write-button");
 
 buttonElement.addEventListener('click', handlePostClick);
 
-fetchAndCommentsRender(commentsData);
+fetchAndCommentsRender();
