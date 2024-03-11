@@ -1,6 +1,6 @@
-import { getListElements } from "./api.js";
-import { postListElement } from "./api.js";
 import { renderComments } from "./render.js";
+import { fetchAndCommentsRender } from "./fetchnrender.js";
+import { postComment } from "./postcomment.js";
 
 // Объявление переменных
 export const nameInputElement = document.getElementById("name-input");
@@ -11,39 +11,39 @@ export const addCommentElement = document.getElementById("add-comment");
 const buttonElement = document.getElementById("write-button");
 
 // Структура данных для комментариев
-let commentsData = [];
+// let commentsData = [];
 
-//Функция GET-запроса (получение с сервера)
-function fetchAndCommentsRender() {
-    addCommentElement.style.display = "none";
-    getListElements().then((responseData) => {
-        const appComments = responseData.comments.map((comment) => {
-            return {
-                author: comment.author.name,
-                date: new Date(comment.date).toLocaleDateString('default', { day: '2-digit', month: '2-digit', year: '2-digit' }) + " " + new Date(comment.date).toLocaleTimeString().slice(0, -3),
-                text: comment.text,
-                likes: comment.likes,
-                isLiked: false,
-            };
-        });
+// //Функция GET-запроса (получение с сервера)
+// function fetchAndCommentsRender() {
+//     addCommentElement.style.display = "none";
+//     getListElements().then((responseData) => {
+//         const appComments = responseData.comments.map((comment) => {
+//             return {
+//                 author: comment.author.name,
+//                 date: new Date(comment.date).toLocaleDateString('default', { day: '2-digit', month: '2-digit', year: '2-digit' }) + " " + new Date(comment.date).toLocaleTimeString().slice(0, -3),
+//                 text: comment.text,
+//                 likes: comment.likes,
+//                 isLiked: false,
+//             };
+//         });
 
-        commentsData = appComments;
-        addFormElement.style.display = "flex"; // Показать форму после
-        renderComments(commentsData);
-    });
-};
+//         commentsData = appComments;
+//         addFormElement.style.display = "flex"; // Показать форму после
+//         renderComments(commentsData);
+//     });
+// };
 
-const postComment = () => {
-    return postListElement({ name: nameInputElement.value, text: textAreaElement.value })
-        .then(() => {
-            fetchAndCommentsRender();
-            nameInputElement.value = "";
-            textAreaElement.value = "";
-        });
-};
+// const postComment = () => {
+//     return postListElement({ name: nameInputElement.value, text: textAreaElement.value })
+//         .then(() => {
+//             fetchAndCommentsRender(commentsData);
+//             nameInputElement.value = "";
+//             textAreaElement.value = "";
+//         });
+// };
 
 // функция проверки полей и обработка кодов API
-const handlePostClick = () => {
+const handlePostClick = (commentsData) => {
 
     nameInputElement.classList.remove("error");
     textAreaElement.classList.remove("error");

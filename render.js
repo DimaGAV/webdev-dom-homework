@@ -1,8 +1,9 @@
 import { attachLikeButtonHandler } from "./likebuttons.js";
 import { initEditComments } from "./editcomment.js";
+// let commentsData = [];
 
 export function renderComments(commentsData) {
-
+   
     const listElement = document.getElementById("list");
 
     listElement.innerHTML = commentsData.map((comment, index) => {
