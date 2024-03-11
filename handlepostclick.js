@@ -51,7 +51,3 @@ function showAddForm() {
     addFormElement.style.display = "flex";
     addCommentElement.style.display = "none";
 }
-
-const buttonElement = document.getElementById("write-button");
-
-buttonElement.addEventListener('click', handlePostClick);
