@@ -1,5 +1,4 @@
 import { fetchAndCommentsRender } from "./fetchnrender.js";
-import { handlePostClick } from "./handlepostclick.js";
 
 // Объявление переменных
 let commentsData = [];
