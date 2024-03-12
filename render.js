@@ -1,9 +1,11 @@
 import { attachLikeButtonHandler } from "./likebuttons.js";
 import { initEditComments } from "./editcomment.js";
+import { handlePostClick } from "./handlepostclick.js";
 
 export function renderComments(commentsData) {
    
     const listElement = document.getElementById("list");
+    const buttonElement = document.getElementById("write-button");
 
     listElement.innerHTML = commentsData.map((comment, index) => {
         const textWithHTML = comment.text.replaceAll("QUOTE_BEGIN", "<div class='quote'>").replaceAll("QUOTE_END", "</div>");
@@ -25,6 +27,8 @@ export function renderComments(commentsData) {
             </li>
         `;
     }).join('');
+
+    buttonElement.addEventListener('click', handlePostClick);
 
     attachLikeButtonHandler(commentsData);
     initEditComments(commentsData);
