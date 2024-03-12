@@ -1,5 +1,5 @@
 import { postComment } from "./postcomment.js";
-import { addCommentElement, addFormElement, nameInputElement, textAreaElement} from "./main.js";
+import { addCommentElement, addFormElement, nameInputElement, textAreaElement} from "./varexp.js";
 
 
 // функция проверки полей и обработка кодов API

@@ -1,7 +1,7 @@
 import { renderComments } from "./render.js";
+import { textAreaElement } from "./varexp.js";
 
 export function initEditComments(commentsData) {
-    const textAreaElement = document.getElementById("text-input");
     const editComments = document.querySelectorAll('.comment');
     for (const editComment of editComments) {
         editComment.addEventListener('click', () => {

@@ -1,6 +1,5 @@
 import { attachLikeButtonHandler } from "./likebuttons.js";
 import { initEditComments } from "./editcomment.js";
-// let commentsData = [];
 
 export function renderComments(commentsData) {
    
