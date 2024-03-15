@@ -4,10 +4,10 @@ import { handlePostClick } from "./handlepostclick.js";
 
 export function renderComments(commentsData) {
 
-    const listElement = document.getElementById("list");
+    // const listElement = document.getElementById("list");
     const buttonElement = document.getElementById("write-button");
-
-    listElement.innerHTML = commentsData
+    const appElement = document.getElementById("app");
+    const commentsHtml = commentsData
         .map((comment, index) => {
             const textWithHTML = comment.text.replaceAll("QUOTE_BEGIN", "<div class='quote'>").replaceAll("QUOTE_END", "</div>");
             return `
@@ -30,9 +30,22 @@ export function renderComments(commentsData) {
         }).join('');
 
 const appHtml = `
-
+<div class="container">
+    <div class="loading">Пожалуйста подождите, загружаю комментарии...</div>
+    <ul id="list" class="comments">${commentsHtml}</ul>
+    <div id="add-comment" class="add-comment-text">Комментарий добавляется...</div>
+    <div class="add-form">
+      <input id="name-input" type="text" class="add-form-name" placeholder="Введите ваше имя" />
+      <textarea id="text-input" type="textarea" class="add-form-text" placeholder="Введите ваш коментарий"
+        rows="4"></textarea>
+      <div class="add-form-row">
+        <button id="write-button" class="add-form-button">Написать</button>
+        <a href="./login.html">Переход на форму</a>
+      </div>
+    </div>
+  </div>
 `;
-
+appElement.innerHTML = appHtml;
     buttonElement.addEventListener('click', handlePostClick);
 
     attachLikeButtonHandler(commentsData);

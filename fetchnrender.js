@@ -19,6 +19,7 @@ export function fetchAndCommentsRender(commentsData) {
 
         commentsData = appComments;
         addFormElement.style.display = "flex"; // Показать форму после
-        renderComments(commentsData);
+        renderComments({commentsData, fetchAndCommentsRender});
+        // return true;
     });
 };

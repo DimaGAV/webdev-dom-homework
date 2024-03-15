@@ -1,10 +1,10 @@
 import { fetchAndCommentsRender } from "./fetchnrender.js";
-import { renderLogin } from "./loginPage.js";
+import { renderLogin } from "./renderLogin.js";
 
 // Объявление переменных
 let commentsData = [];
 export {commentsData};
 
 
-fetchAndCommentsRender(commentsData);
-// renderLogin(fetchAndCommentsRender);
+// fetchAndCommentsRender(commentsData);
+renderLogin({ fetchAndCommentsRender });

@@ -1,6 +1,7 @@
 import { login, setToken, token } from "./api.js";
+// import { fetchAndCommentsRender } from "./fetchnrender.js";
 
-export const renderLogin = () => {
+export const renderLogin = ({ fetchAndCommentsRender }) => {
     const appElement = document.getElementById("app");
     const loginHtml = `
   <div class="container">
@@ -25,10 +26,14 @@ export const renderLogin = () => {
         login({
             login: loginInputElement.value,
             password: passwordInputElement.value,
-        }).then((responseData) => {
-            console.log(token);
-            setToken(responseData.user.token);
-            console.log(token);
-        });
+        })
+            .then((responseData) => {
+                console.log(token);
+                setToken(responseData.user.token);
+                console.log(token);
+            })
+            .then(() => {
+                fetchAndCommentsRender();
+            })
     });
 };
