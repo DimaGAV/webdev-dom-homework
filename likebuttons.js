@@ -1,4 +1,4 @@
-import { renderComments } from "./render.js";
+import { renderComments } from "./renderComments.js";
 
 export function attachLikeButtonHandler(commentsData) {
     const likeButtons = document.querySelectorAll('.like-button');

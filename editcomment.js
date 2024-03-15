@@ -1,4 +1,4 @@
-import { renderComments } from "./render.js";
+import { renderComments } from "./renderComments.js";
 import { textAreaElement } from "./varexp.js";
 
 export function initEditComments(commentsData) {

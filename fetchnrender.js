@@ -1,6 +1,7 @@
 import { getListElements } from "./api.js";
-import { addCommentElement, addFormElement,  } from "./varexp.js";
-import { renderComments } from "./render.js";
+import { addCommentElement, addFormElement, } from "./varexp.js";
+import { renderComments } from "./renderComments.js";
+// import { renderLogin } from "./loginPage.js";
 
 
 export function fetchAndCommentsRender(commentsData) {

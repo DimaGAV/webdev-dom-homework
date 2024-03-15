@@ -2,8 +2,9 @@ body {
   margin: 0;
 }
 
-a, button {
+a {
 display: block;
+color: white;
 }
 
 .container {

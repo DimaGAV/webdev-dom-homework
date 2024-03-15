@@ -3,13 +3,14 @@ import { initEditComments } from "./editcomment.js";
 import { handlePostClick } from "./handlepostclick.js";
 
 export function renderComments(commentsData) {
-   
+
     const listElement = document.getElementById("list");
     const buttonElement = document.getElementById("write-button");
 
-    listElement.innerHTML = commentsData.map((comment, index) => {
-        const textWithHTML = comment.text.replaceAll("QUOTE_BEGIN", "<div class='quote'>").replaceAll("QUOTE_END", "</div>");
-        return `
+    listElement.innerHTML = commentsData
+        .map((comment, index) => {
+            const textWithHTML = comment.text.replaceAll("QUOTE_BEGIN", "<div class='quote'>").replaceAll("QUOTE_END", "</div>");
+            return `
             <li data-index="${index}" class="comment">
                 <div class="comment-header">
                     <div>${comment.author}</div>
@@ -26,7 +27,11 @@ export function renderComments(commentsData) {
                 </div>
             </li>
         `;
-    }).join('');
+        }).join('');
+
+const appHtml = `
+
+`;
 
     buttonElement.addEventListener('click', handlePostClick);
 
