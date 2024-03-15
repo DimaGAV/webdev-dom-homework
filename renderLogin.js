@@ -1,7 +1,8 @@
 import { login, setToken, token } from "./api.js";
-// import { fetchAndCommentsRender } from "./fetchnrender.js";
+import { fetchAndCommentsRender } from "./fetchnrender.js";
+// import { commentsData } from "./main.js";
 
-export const renderLogin = ({ fetchAndCommentsRender }) => {
+export const renderLogin = () => {
     const appElement = document.getElementById("app");
     const loginHtml = `
   <div class="container">

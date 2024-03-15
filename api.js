@@ -1,4 +1,6 @@
 import { sanitizeHtml } from "./sanitizeHtml.js";
+import { loadingElement } from "./varexp.js";
+
 
 const commentsURL = "https://wedev-api.sky.pro/api/v2/aleksander-gavrikov/comments";
 const userURL = "https://wedev-api.sky.pro/api/user/login";
@@ -10,7 +12,7 @@ export const setToken = (newToken) => {
 }
 
 export function getListElements() {
-    const loadingElement = document.querySelector(".loading");
+    // const loadingElement = document.querySelector(".loading");
     return fetch(commentsURL, {
         method: "GET",
         headers: {
@@ -18,7 +20,7 @@ export function getListElements() {
         },
     })
         .then((response) => {
-            loadingElement.style.display = "none";
+            // loadingElement.style.display = "none";
             return response.json();
         });
 }

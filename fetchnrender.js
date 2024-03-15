@@ -5,7 +5,7 @@ import { renderComments } from "./renderComments.js";
 
 
 export function fetchAndCommentsRender(commentsData) {
-    addCommentElement.style.display = "none";
+    // addCommentElement.style.display = "none";
     getListElements().then((responseData) => {
         const appComments = responseData.comments.map((comment) => {
             return {
@@ -18,8 +18,8 @@ export function fetchAndCommentsRender(commentsData) {
         });
 
         commentsData = appComments;
-        addFormElement.style.display = "flex"; // Показать форму после
-        renderComments({commentsData, fetchAndCommentsRender});
+        // addFormElement.style.display = "flex"; // Показать форму после
+        renderComments({ commentsData, fetchAndCommentsRender });
         // return true;
     });
 };
