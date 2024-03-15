@@ -2,6 +2,10 @@ body {
   margin: 0;
 }
 
+a, button {
+display: block;
+}
+
 .container {
   font-family: Helvetica;
   color: #ffffff;
@@ -27,7 +31,8 @@ body {
 }
 
 .comment,
-.add-form {
+.add-form,
+.authorize-form {
   width: 596px;
   box-sizing: border-box;
   background: radial-gradient(75.42% 75.42% at 50% 42.37%,
@@ -121,7 +126,9 @@ body {
   animation: rotating 2s linear infinite;
 }
 
-.add-form {
+.add-form,
+.authorize-form
+{
   padding: 20px;
   margin-top: 48px;
   display: flex;
@@ -129,7 +136,10 @@ body {
 }
 
 .add-form-name,
-.add-form-text {
+.add-form-text,
+.authorize-form-login,
+.authorize-form-password
+ {
   font-size: 16px;
   font-family: Helvetica;
   border-radius: 8px;
@@ -174,4 +184,9 @@ body {
   color: red;
   opacity: 1;
   /* Firefox */
+}
+.authorize-form-login,
+.authorize-form-password {
+  margin-top: 12px;
+  padding: 22px;
 }
