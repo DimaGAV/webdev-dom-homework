@@ -4,9 +4,10 @@ import { renderComments } from "./renderComments.js";
 
 
 export function fetchAndCommentsRender(commentsData) {
-    
+    // 
     // addCommentElement.style.display = "none";
     getListElements().then((responseData) => {
+        
         const appComments = responseData.comments.map((comment) => {
             return {
                 author: comment.author.name,
@@ -18,6 +19,7 @@ export function fetchAndCommentsRender(commentsData) {
         });
 
         commentsData = appComments;
+        // const addFormElement = document.querySelector(".add-form");
         // addFormElement.style.display = "flex"; // Показать форму после
         renderComments(commentsData);
     });

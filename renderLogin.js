@@ -1,5 +1,8 @@
 import { login, setToken, token } from "./api.js";
 import { fetchAndCommentsRender } from "./fetchnrender.js";
+import { handlePostClick } from "./handlepostclick.js";
+import { commentsData } from "./main.js";
+import { renderComments } from "./renderComments.js";
 
 export const renderLogin = () => {
     const appElement = document.getElementById("app");
@@ -32,14 +35,15 @@ export const renderLogin = () => {
                 console.log(token);
             })
             .then(() => {
+                // renderComments(commentsData);
                 fetchAndCommentsRender();
-// 
+                const buttonElement = document.getElementById("write-button");
+                console.log(buttonElement);
+                // const addFormElement = document.querySelector(".add-form");
+                // addFormElement.style.display = "flex";
             })
             .then(() => {
-                const addFormElement = document.querySelector(".add-form");
-addFormElement.style.display = "flex";
-                const buttonElement = document.getElementById("write-button");
-buttonElement.addEventListener('click', handlePostClick);
+                buttonElement.addEventListener('click', handlePostClick);
             })
     });
 };
