@@ -30,7 +30,9 @@ color: white;
   padding: 0;
   list-style: none;
 }
-
+.authorize-word {
+  text-decoration: underline;
+}
 .comment,
 .add-form,
 .authorize-form {

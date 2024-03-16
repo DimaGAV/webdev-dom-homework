@@ -33,6 +33,13 @@ export const renderLogin = () => {
             })
             .then(() => {
                 fetchAndCommentsRender();
+// 
+            })
+            .then(() => {
+                const addFormElement = document.querySelector(".add-form");
+addFormElement.style.display = "flex";
+                const buttonElement = document.getElementById("write-button");
+buttonElement.addEventListener('click', handlePostClick);
             })
     });
 };
