@@ -1,6 +1,5 @@
 import { login, setToken, token } from "./api.js";
 import { fetchAndCommentsRender } from "./fetchnrender.js";
-// import { commentsData } from "./main.js";
 
 export const renderLogin = () => {
     const appElement = document.getElementById("app");
@@ -11,7 +10,6 @@ export const renderLogin = () => {
                 <input id="login-input" type="text" class="authorize-form-login" placeholder="Введите логин" />
                 <input id="password-input" type="text" class="authorize-form-password" placeholder="Введите пароль" />
             <button id="login-button" class="authorize-form-button">Войти</button>
-            <a href="./index.html">Переход на комменты</a>
             <!-- <p>Зарегистрироваться</p> -->
         </div>
     </div>
@@ -19,9 +17,9 @@ export const renderLogin = () => {
 
     appElement.innerHTML = loginHtml;
 
-    const buttonElement = document.getElementById("login-button");
     const loginInputElement = document.getElementById("login-input");
     const passwordInputElement = document.getElementById("password-input");
+    const buttonElement = document.getElementById("login-button");
 
     buttonElement.addEventListener("click", () => {
         login({

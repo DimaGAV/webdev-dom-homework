@@ -1,10 +1,10 @@
 import { getListElements } from "./api.js";
 import { addCommentElement, addFormElement, } from "./varexp.js";
 import { renderComments } from "./renderComments.js";
-// import { renderLogin } from "./loginPage.js";
 
 
 export function fetchAndCommentsRender(commentsData) {
+    
     // addCommentElement.style.display = "none";
     getListElements().then((responseData) => {
         const appComments = responseData.comments.map((comment) => {
@@ -19,7 +19,6 @@ export function fetchAndCommentsRender(commentsData) {
 
         commentsData = appComments;
         // addFormElement.style.display = "flex"; // Показать форму после
-        renderComments({ commentsData, fetchAndCommentsRender });
-        // return true;
+        renderComments(commentsData);
     });
 };

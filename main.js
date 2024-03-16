@@ -7,4 +7,4 @@ export {commentsData};
 
 
 // fetchAndCommentsRender(commentsData);
-renderLogin();
+renderLogin(fetchAndCommentsRender);

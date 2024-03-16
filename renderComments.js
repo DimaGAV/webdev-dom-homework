@@ -5,7 +5,6 @@ import { handlePostClick } from "./handlepostclick.js";
 export function renderComments(commentsData) {
 
     // const listElement = document.getElementById("list");
-    const buttonElement = document.getElementById("write-button");
     const appElement = document.getElementById("app");
     const commentsHtml = commentsData
         .map((comment, index) => {
@@ -28,6 +27,8 @@ export function renderComments(commentsData) {
             </li>
         `;
         }).join('');
+/* <input id="name-input" type="text" class="add-form-name" placeholder="Введите ваше имя"/> */
+
 
 const appHtml = `
 <div class="container">
@@ -35,18 +36,24 @@ const appHtml = `
     <ul id="list" class="comments">${commentsHtml}</ul>
     <div id="add-comment" class="add-comment-text">Комментарий добавляется...</div>
     <div class="add-form">
-      <input id="name-input" type="text" class="add-form-name" placeholder="Введите ваше имя" />
-      <textarea id="text-input" type="textarea" class="add-form-text" placeholder="Введите ваш коментарий"
+      <input id="name-input" type="text" class="add-form-name" placeholder="Введите Ваше имя" readonly/>
+      <textarea id="text-input" type="textarea" class="add-form-text" placeholder="Введите Ваш коментарий"
         rows="4"></textarea>
       <div class="add-form-row">
         <button id="write-button" class="add-form-button">Написать</button>
-        <a href="./login.html">Переход на форму</a>
       </div>
     </div>
   </div>
 `;
 appElement.innerHTML = appHtml;
-    buttonElement.addEventListener('click', handlePostClick);
+
+const loginInputElement = document.getElementById("login-input");
+const nameInputElement = document.getElementById("name-input");
+
+nameInputElement = loginInputElement;
+
+const buttonElement = document.getElementById("write-button");
+buttonElement.addEventListener('click', handlePostClick);
 
     attachLikeButtonHandler(commentsData);
     initEditComments(commentsData);
