@@ -4,7 +4,7 @@ import { addCommentElement, addFormElement, } from "./varexp.js";
 import { renderComments } from "./renderComments.js";
 
 
-export function fetchAndCommentsRender(commentsData) {
+export function fetchAndCommentsRender(commentsData, isAuthenticated, isAuthorized) {
     // 
     // addCommentElement.style.display = "none";
     getListElements().then((responseData) => {
@@ -20,8 +20,7 @@ export function fetchAndCommentsRender(commentsData) {
         });
 
         commentsData = appComments;
-        // const addFormElement = document.querySelector(".add-form");
-        // addFormElement.style.display = "flex"; // Показать форму после
-        renderComments(commentsData);
+        
+        renderComments(commentsData, isAuthenticated, isAuthorized);
     });
 };

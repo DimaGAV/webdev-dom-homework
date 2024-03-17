@@ -4,7 +4,7 @@ import { initEditComments } from "./editcomment.js";
 import { handlePostClick } from "./handlepostclick.js";
 import { renderLogin } from "./renderLogin.js";
 import { fetchAndCommentsRender } from "./fetchnrender.js";
-export function renderComments(commentsData) {
+export function renderComments(commentsData, isAuthenticated, isAuthorized) {
 
     const appElement = document.getElementById("app");
     const commentsHtml = commentsData
@@ -29,37 +29,37 @@ export function renderComments(commentsData) {
         `;
         }).join('');
 
+        
+    const addFormHtml = isAuthenticated ? `
+        <div class="add-form">
+            <input id="name-input" type="text" class="add-form-name" placeholder="Введите Ваше имя" readonly />
+            <textarea id="text-input" type="textarea" class="add-form-text" placeholder="Введите Ваш коментарий" rows="4"></textarea>
+            <div class="add-form-row">
+                <button id="write-button" class="add-form-button">Написать</button>
+            </div>
+        </div>
+    ` : '';
+
     const appHtml = `
 <div class="container">
     <ul id="list" class="comments">${commentsHtml}</ul>
-    <div id="add-comment" class="add-comment-text">Чтобы добавить комментарий, <span class = "authorize-word">авторизуйтесь</span></div>
-    <div class="add-form">
-      <input id="name-input" type="text" class="add-form-name" placeholder="Введите Ваше имя" />
-      <textarea id="text-input" type="textarea" class="add-form-text" placeholder="Введите Ваш коментарий"
-        rows="4"></textarea>
-      <div class="add-form-row">
-        <button id="write-button" class="add-form-button">Написать</button>
-      </div>
-    </div>
+    <div id="add-comment" class="add-comment-text ${isAuthorized ? 'hidden' : ''}">Чтобы добавить комментарий, <span class = "authorize-word">авторизуйтесь</span></div>
+    ${addFormHtml}
   </div>
 `;
     appElement.innerHTML = appHtml;
-
+    
     // const loginInputElement = document.getElementById("login-input");
     // const nameInputElement = document.getElementById("name-input");
 
     // nameInputElement = loginInputElement;
 
-    const addFormElement = document.querySelector(".add-form");
-    // addFormElement.style.display = "none";
-
     const authorizeWordElement = document.querySelector(".authorize-word");
     authorizeWordElement.addEventListener('click', renderLogin);
 
 
-    addFormElement.style.display = "flex";
-    const buttonElement = document.getElementById("write-button");
-    buttonElement.addEventListener('click', handlePostClick);
+    // const buttonElement = document.getElementById("write-button");
+    // buttonElement.addEventListener('click', handlePostClick);
 
     attachLikeButtonHandler(commentsData);
     initEditComments(commentsData);

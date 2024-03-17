@@ -36,12 +36,12 @@ export const renderLogin = () => {
                 console.log(token);
             })
             .then(() => {
-                fetchAndCommentsRender();
-                
+                fetchAndCommentsRender(commentsData, true, true);
+
             })
             .catch((error) => {
                 console.error("Ошибка входа:", error);
                 alert("Неправильный логин или пароль");
             });
-                });
+    });
 };

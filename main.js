@@ -5,8 +5,10 @@ import { fetchAndCommentsRender } from "./fetchnrender.js";
 
 // Объявление переменных
 let commentsData = [];
+let isAuthenticated = false;
+let isAuthorized = false;
 export {commentsData};
 
 
-fetchAndCommentsRender(commentsData);
+fetchAndCommentsRender(commentsData, isAuthenticated, isAuthorized);
 // renderLogin(fetchAndCommentsRender);

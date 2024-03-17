@@ -23,6 +23,9 @@ color: white;
   margin-top: 24px;
 }
 
+.hidden {
+display: none;
+}
 
 .comments,
 .comment {
