@@ -1,3 +1,4 @@
+// main.js
 import { fetchAndCommentsRender } from "./fetchnrender.js";
 // import { renderLogin } from "./renderLogin.js";
 // import { addCommentElement, addFormElement } from "./varexp.js";

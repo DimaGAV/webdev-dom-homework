@@ -1,11 +1,11 @@
+// renderComments.js
 import { attachLikeButtonHandler } from "./likebuttons.js";
 import { initEditComments } from "./editcomment.js";
 import { handlePostClick } from "./handlepostclick.js";
-import {renderLogin} from "./renderLogin.js";
+import { renderLogin } from "./renderLogin.js";
 import { fetchAndCommentsRender } from "./fetchnrender.js";
 export function renderComments(commentsData) {
 
-    // const listElement = document.getElementById("list");
     const appElement = document.getElementById("app");
     const commentsHtml = commentsData
         .map((comment, index) => {
@@ -29,7 +29,7 @@ export function renderComments(commentsData) {
         `;
         }).join('');
 
-const appHtml = `
+    const appHtml = `
 <div class="container">
     <ul id="list" class="comments">${commentsHtml}</ul>
     <div id="add-comment" class="add-comment-text">Чтобы добавить комментарий, <span class = "authorize-word">авторизуйтесь</span></div>
@@ -43,23 +43,23 @@ const appHtml = `
     </div>
   </div>
 `;
-appElement.innerHTML = appHtml;
+    appElement.innerHTML = appHtml;
 
-// const loginInputElement = document.getElementById("login-input");
-// const nameInputElement = document.getElementById("name-input");
+    // const loginInputElement = document.getElementById("login-input");
+    // const nameInputElement = document.getElementById("name-input");
 
-// nameInputElement = loginInputElement;
+    // nameInputElement = loginInputElement;
 
-const addFormElement = document.querySelector(".add-form");
-addFormElement.style.display = "none";
+    const addFormElement = document.querySelector(".add-form");
+    // addFormElement.style.display = "none";
 
-const authorizeWordElement = document.querySelector(".authorize-word");
-authorizeWordElement.addEventListener('click', renderLogin);
+    const authorizeWordElement = document.querySelector(".authorize-word");
+    authorizeWordElement.addEventListener('click', renderLogin);
 
 
-// addFormElement.style.display = "flex";
-// const buttonElement = document.getElementById("write-button");
-// buttonElement.addEventListener('click', handlePostClick);
+    addFormElement.style.display = "flex";
+    const buttonElement = document.getElementById("write-button");
+    buttonElement.addEventListener('click', handlePostClick);
 
     attachLikeButtonHandler(commentsData);
     initEditComments(commentsData);
