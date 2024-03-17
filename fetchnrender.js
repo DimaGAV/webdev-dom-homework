@@ -1,13 +1,8 @@
-// fetchnrender.js
 import { getListElements } from "./api.js";
-import { addCommentElement, addFormElement, } from "./varexp.js";
 import { renderComments } from "./renderComments.js";
-// import {userName} from "./"
 
 
 export function fetchAndCommentsRender(commentsData, isAuthenticated, isAuthorized, userName) {
-    // 
-    // addCommentElement.style.display = "none";
     getListElements().then((responseData) => {
 
         const appComments = responseData.comments.map((comment) => {

@@ -1,6 +1,4 @@
-// main.js
 import { fetchAndCommentsRender } from "./fetchnrender.js";
-import { handlePostClick } from "./handlepostclick.js";
 import { userName } from "./renderLogin.js";
 
 // Объявление переменных

@@ -1,4 +1,3 @@
-// postcomment.js
 import { postListElement } from "./api.js";
 import { fetchAndCommentsRender } from "./fetchnrender.js";
 import { commentsData } from "./main.js";

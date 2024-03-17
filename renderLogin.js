@@ -1,4 +1,3 @@
-// renderLogin.js
 import { login, setToken, token } from "./api.js";
 import { fetchAndCommentsRender } from "./fetchnrender.js";
 import { commentsData } from "./main.js";

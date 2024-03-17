@@ -1,4 +1,3 @@
-// api.js
 import { sanitizeHtml } from "./sanitizeHtml.js";
 import { loadingElement } from "./varexp.js";
 

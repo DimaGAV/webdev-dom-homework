@@ -1,18 +1,16 @@
-// handlepostclick.js
-import { addCommentElement, addFormElement } from "./varexp.js";
+// import { addCommentElement, addFormElement } from "./varexp.js";
 import { postComment } from "./postcomment.js";
-import {renderLogin} from "./renderLogin.js"
 import { isAuthenticated } from "./main.js";
 
 // функция проверки полей и обработка кодов API
 export const handlePostClick = () => {
-    
+
     const nameInputElement = document.getElementById("name-input");
     const textAreaElement = document.getElementById("text-input");
     const addFormElement = document.querySelector(".add-form");
- const addCommentElement = document.getElementById("add-comment");
+    const addCommentElement = document.getElementById("add-comment");
 
-    
+
     nameInputElement.classList.remove("error");
     textAreaElement.classList.remove("error");
 

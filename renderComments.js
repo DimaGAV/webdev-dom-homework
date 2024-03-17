@@ -1,4 +1,3 @@
-// renderComments.js
 import { attachLikeButtonHandler } from "./likebuttons.js";
 import { initEditComments } from "./editcomment.js";
 import { handlePostClick } from "./handlepostclick.js";
@@ -58,5 +57,5 @@ export function renderComments(commentsData, isAuthenticated, isAuthorized, user
     }
 
     attachLikeButtonHandler(commentsData);
-    initEditComments(commentsData, isAuthenticated, isAuthorized, userName);
+    initEditComments(commentsData);
 }
