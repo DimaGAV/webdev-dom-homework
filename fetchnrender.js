@@ -2,9 +2,10 @@
 import { getListElements } from "./api.js";
 import { addCommentElement, addFormElement, } from "./varexp.js";
 import { renderComments } from "./renderComments.js";
+// import {userName} from "./"
 
 
-export function fetchAndCommentsRender(commentsData, isAuthenticated, isAuthorized) {
+export function fetchAndCommentsRender(commentsData, isAuthenticated, isAuthorized, userName) {
     // 
     // addCommentElement.style.display = "none";
     getListElements().then((responseData) => {
@@ -21,6 +22,6 @@ export function fetchAndCommentsRender(commentsData, isAuthenticated, isAuthoriz
 
         commentsData = appComments;
         
-        renderComments(commentsData, isAuthenticated, isAuthorized);
+        renderComments(commentsData, isAuthenticated, isAuthorized, userName);
     });
 };

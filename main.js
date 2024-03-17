@@ -1,6 +1,7 @@
 // main.js
 import { fetchAndCommentsRender } from "./fetchnrender.js";
-// import { renderLogin } from "./renderLogin.js";
+import { handlePostClick } from "./handlepostclick.js";
+import { renderLogin } from "./renderLogin.js";
 // import { addCommentElement, addFormElement } from "./varexp.js";
 
 // Объявление переменных
@@ -11,4 +12,4 @@ export {commentsData};
 
 
 fetchAndCommentsRender(commentsData, isAuthenticated, isAuthorized);
-// renderLogin(fetchAndCommentsRender);
+// renderLogin(handlePostClick);

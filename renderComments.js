@@ -4,7 +4,7 @@ import { initEditComments } from "./editcomment.js";
 import { handlePostClick } from "./handlepostclick.js";
 import { renderLogin } from "./renderLogin.js";
 import { fetchAndCommentsRender } from "./fetchnrender.js";
-export function renderComments(commentsData, isAuthenticated, isAuthorized) {
+export function renderComments(commentsData, isAuthenticated, isAuthorized, userName) {
 
     const appElement = document.getElementById("app");
     const commentsHtml = commentsData
@@ -32,13 +32,12 @@ export function renderComments(commentsData, isAuthenticated, isAuthorized) {
         
     const addFormHtml = isAuthenticated ? `
         <div class="add-form">
-            <input id="name-input" type="text" class="add-form-name" placeholder="Введите Ваше имя" readonly />
+            <input id="name-input" type="text" class="add-form-name" value = "${userName}" readonly />
             <textarea id="text-input" type="textarea" class="add-form-text" placeholder="Введите Ваш коментарий" rows="4"></textarea>
             <div class="add-form-row">
                 <button id="write-button" class="add-form-button">Написать</button>
             </div>
-        </div>
-    ` : '';
+        </div>` : '';
 
     const appHtml = `
 <div class="container">
@@ -49,17 +48,14 @@ export function renderComments(commentsData, isAuthenticated, isAuthorized) {
 `;
     appElement.innerHTML = appHtml;
     
-    // const loginInputElement = document.getElementById("login-input");
-    // const nameInputElement = document.getElementById("name-input");
-
-    // nameInputElement = loginInputElement;
-
     const authorizeWordElement = document.querySelector(".authorize-word");
     authorizeWordElement.addEventListener('click', renderLogin);
 
+// const liveForm = isActive
+    
+// const buttonElement = document.getElementById("write-button");
+//     buttonElement.addEventListener('click', handlePostClick);
 
-    // const buttonElement = document.getElementById("write-button");
-    // buttonElement.addEventListener('click', handlePostClick);
 
     attachLikeButtonHandler(commentsData);
     initEditComments(commentsData);

@@ -5,7 +5,7 @@ import { handlePostClick } from "./handlepostclick.js";
 import { commentsData } from "./main.js";
 import { renderComments } from "./renderComments.js";
 
-export const renderLogin = () => {
+export const renderLogin = (handlePostClick) => {
     const appElement = document.getElementById("app");
     const loginHtml = `
   <div class="container">
@@ -21,11 +21,14 @@ export const renderLogin = () => {
 
     appElement.innerHTML = loginHtml;
 
+
+
     const loginInputElement = document.getElementById("login-input");
     const passwordInputElement = document.getElementById("password-input");
-    const buttonElement = document.getElementById("login-button");
+    const enterButtonElement = document.getElementById("login-button");
+    // let userName = loginInputElement.value;
 
-    buttonElement.addEventListener("click", () => {
+    enterButtonElement.addEventListener("click", () => {
         login({
             login: loginInputElement.value,
             password: passwordInputElement.value,
@@ -34,9 +37,8 @@ export const renderLogin = () => {
                 console.log(token);
                 setToken(responseData.user.token);
                 console.log(token);
-            })
-            .then(() => {
-                fetchAndCommentsRender(commentsData, true, true);
+                let userName = responseData.user.login
+                fetchAndCommentsRender(commentsData, true, true, userName);
 
             })
             .catch((error) => {
@@ -44,4 +46,6 @@ export const renderLogin = () => {
                 alert("Неправильный логин или пароль");
             });
     });
+
 };
+
