@@ -1,15 +1,13 @@
 // main.js
 import { fetchAndCommentsRender } from "./fetchnrender.js";
 import { handlePostClick } from "./handlepostclick.js";
-import { renderLogin } from "./renderLogin.js";
-// import { addCommentElement, addFormElement } from "./varexp.js";
+import { userName } from "./renderLogin.js";
 
 // Объявление переменных
 let commentsData = [];
-let isAuthenticated = false;
+export let isAuthenticated = false;
 let isAuthorized = false;
-export {commentsData};
+export { commentsData };
 
 
-fetchAndCommentsRender(commentsData, isAuthenticated, isAuthorized);
-// renderLogin(handlePostClick);
+fetchAndCommentsRender(commentsData, isAuthenticated, isAuthorized, userName);

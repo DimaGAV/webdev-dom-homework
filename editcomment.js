@@ -11,7 +11,7 @@ export function initEditComments(commentsData) {
             const commentAuthor = `QUOTE_BEGIN${commentsData[index].author}:`;
             const commentText = `${commentsData[index].text}QUOTE_END`;
             textAreaElement.value = `${commentAuthor}\n${commentText}\n\n`;
-            renderComments(commentsData);
+            renderComments(commentsData, true, true);
         })
     }
 }

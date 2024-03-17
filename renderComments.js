@@ -3,7 +3,6 @@ import { attachLikeButtonHandler } from "./likebuttons.js";
 import { initEditComments } from "./editcomment.js";
 import { handlePostClick } from "./handlepostclick.js";
 import { renderLogin } from "./renderLogin.js";
-import { fetchAndCommentsRender } from "./fetchnrender.js";
 export function renderComments(commentsData, isAuthenticated, isAuthorized, userName) {
 
     const appElement = document.getElementById("app");
@@ -29,7 +28,7 @@ export function renderComments(commentsData, isAuthenticated, isAuthorized, user
         `;
         }).join('');
 
-        
+
     const addFormHtml = isAuthenticated ? `
         <div class="add-form">
             <input id="name-input" type="text" class="add-form-name" value = "${userName}" readonly />
@@ -47,16 +46,17 @@ export function renderComments(commentsData, isAuthenticated, isAuthorized, user
   </div>
 `;
     appElement.innerHTML = appHtml;
-    
+
+
     const authorizeWordElement = document.querySelector(".authorize-word");
     authorizeWordElement.addEventListener('click', renderLogin);
 
-// const liveForm = isActive
-    
-// const buttonElement = document.getElementById("write-button");
-//     buttonElement.addEventListener('click', handlePostClick);
 
+    const buttonElement = document.getElementById("write-button");
+    if (buttonElement) {
+        buttonElement.addEventListener('click', handlePostClick);
+    }
 
     attachLikeButtonHandler(commentsData);
-    initEditComments(commentsData);
+    initEditComments(commentsData, isAuthenticated, isAuthorized, userName);
 }

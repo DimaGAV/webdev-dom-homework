@@ -1,11 +1,11 @@
 // renderLogin.js
 import { login, setToken, token } from "./api.js";
 import { fetchAndCommentsRender } from "./fetchnrender.js";
-import { handlePostClick } from "./handlepostclick.js";
 import { commentsData } from "./main.js";
-import { renderComments } from "./renderComments.js";
 
-export const renderLogin = (handlePostClick) => {
+export let userName;
+
+export const renderLogin = () => {
     const appElement = document.getElementById("app");
     const loginHtml = `
   <div class="container">
@@ -20,13 +20,15 @@ export const renderLogin = (handlePostClick) => {
   `;
 
     appElement.innerHTML = loginHtml;
-
-
+    
+    
+    const setName = (newName) => {
+        userName = newName;
+    }
 
     const loginInputElement = document.getElementById("login-input");
     const passwordInputElement = document.getElementById("password-input");
     const enterButtonElement = document.getElementById("login-button");
-    // let userName = loginInputElement.value;
 
     enterButtonElement.addEventListener("click", () => {
         login({
@@ -37,7 +39,7 @@ export const renderLogin = (handlePostClick) => {
                 console.log(token);
                 setToken(responseData.user.token);
                 console.log(token);
-                let userName = responseData.user.login
+                setName(responseData.user.name);
                 fetchAndCommentsRender(commentsData, true, true, userName);
 
             })

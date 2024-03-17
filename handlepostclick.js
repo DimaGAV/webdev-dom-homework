@@ -1,6 +1,8 @@
 // handlepostclick.js
 import { addCommentElement, addFormElement } from "./varexp.js";
 import { postComment } from "./postcomment.js";
+import {renderLogin} from "./renderLogin.js"
+import { isAuthenticated } from "./main.js";
 
 // функция проверки полей и обработка кодов API
 export const handlePostClick = () => {
@@ -29,7 +31,7 @@ export const handlePostClick = () => {
     addCommentElement.textContent = "Комментарий добавляется...";
     addCommentElement.style.display = "block";
 
-    postComment(textAreaElement.value, nameInputElement.value)
+    postComment(textAreaElement.value, nameInputElement.value, isAuthenticated)
 
         .catch((error) => {
 
@@ -54,7 +56,7 @@ export const handlePostClick = () => {
 };
 
 // Показ заполненной формы
-function showAddForm() {
+const showAddForm = () => {
 
     const addFormElement = document.querySelector(".add-form");
     const addCommentElement = document.getElementById("add-comment");

@@ -9,7 +9,7 @@ export function fetchAndCommentsRender(commentsData, isAuthenticated, isAuthoriz
     // 
     // addCommentElement.style.display = "none";
     getListElements().then((responseData) => {
-        
+
         const appComments = responseData.comments.map((comment) => {
             return {
                 author: comment.author.name,
@@ -21,7 +21,7 @@ export function fetchAndCommentsRender(commentsData, isAuthenticated, isAuthoriz
         });
 
         commentsData = appComments;
-        
+
         renderComments(commentsData, isAuthenticated, isAuthorized, userName);
     });
 };
