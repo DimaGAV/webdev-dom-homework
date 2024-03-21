@@ -1,11 +1,11 @@
-import { login, setToken, token } from "./api.js";
-import { fetchAndCommentsRender } from "./fetchnrender.js";
-import { commentsData } from "./main.js";
+import { login, setToken, token } from './api.js'
+import { fetchAndCommentsRender } from './fetchnrender.js'
+import { commentsData } from './main.js'
 
-export let userName;
+export let userName
 
 export const renderLogin = () => {
-    const appElement = document.getElementById("app");
+    const appElement = document.getElementById('app')
     const loginHtml = `
   <div class="container">
         <div class="authorize-form">
@@ -16,37 +16,33 @@ export const renderLogin = () => {
             <!-- <p>Зарегистрироваться</p> -->
         </div>
     </div>
-  `;
+  `
 
-    appElement.innerHTML = loginHtml;
-    
-    
+    appElement.innerHTML = loginHtml
+
     const setName = (newName) => {
-        userName = newName;
+        userName = newName
     }
 
-    const loginInputElement = document.getElementById("login-input");
-    const passwordInputElement = document.getElementById("password-input");
-    const enterButtonElement = document.getElementById("login-button");
+    const loginInputElement = document.getElementById('login-input')
+    const passwordInputElement = document.getElementById('password-input')
+    const enterButtonElement = document.getElementById('login-button')
 
-    enterButtonElement.addEventListener("click", () => {
+    enterButtonElement.addEventListener('click', () => {
         login({
             login: loginInputElement.value,
             password: passwordInputElement.value,
         })
             .then((responseData) => {
-                console.log(token);
-                setToken(responseData.user.token);
-                console.log(token);
-                setName(responseData.user.name);
-                fetchAndCommentsRender(commentsData, true, true, userName);
-
+                console.log(token)
+                setToken(responseData.user.token)
+                console.log(token)
+                setName(responseData.user.name)
+                fetchAndCommentsRender(commentsData, true, true, userName)
             })
             .catch((error) => {
-                console.error("Ошибка входа:", error);
-                alert("Неправильный логин или пароль");
-            });
-    });
-
-};
-
+                console.error('Ошибка входа:', error)
+                alert('Неправильный логин или пароль')
+            })
+    })
+}

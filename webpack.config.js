@@ -1,7 +1,7 @@
 module.exports = {
-    entry: "./main.js",
+    entry: './main.js',
     // devtools: "sourse-map",
     output: {
-        filename: "main.js"
-    }
+        filename: 'main.js',
+    },
 }
