@@ -3,18 +3,18 @@ import { initEditComments } from './editcomment.js'
 import { handlePostClick } from './handlepostclick.js'
 import { renderLogin } from './renderLogin.js'
 export function renderComments(
-    commentsData,
-    isAuthenticated,
-    isAuthorized,
-    userName,
+  commentsData,
+  isAuthenticated,
+  isAuthorized,
+  userName,
 ) {
-    const appElement = document.getElementById('app')
-    const commentsHtml = commentsData
-        .map((comment, index) => {
-            const textWithHTML = comment.text
-                .replaceAll('QUOTE_BEGIN', "<div class='quote'>")
-                .replaceAll('QUOTE_END', '</div>')
-            return `
+  const appElement = document.getElementById('app')
+  const commentsHtml = commentsData
+    .map((comment, index) => {
+      const textWithHTML = comment.text
+        .replaceAll('QUOTE_BEGIN', "<div class='quote'>")
+        .replaceAll('QUOTE_END', '</div>')
+      return `
             <li data-index="${index}" class="comment">
                 <div class="comment-header">
                     <div>${comment.author}</div>
@@ -31,11 +31,11 @@ export function renderComments(
                 </div>
             </li>
         `
-        })
-        .join('')
+    })
+    .join('')
 
-    const addFormHtml = isAuthenticated
-        ? `
+  const addFormHtml = isAuthenticated
+    ? `
         <div class="add-form">
             <input id="name-input" type="text" class="add-form-name" value = "${userName}" readonly />
             <textarea id="text-input" type="textarea" class="add-form-text" placeholder="Введите Ваш коментарий" rows="4"></textarea>
@@ -43,25 +43,25 @@ export function renderComments(
                 <button id="write-button" class="add-form-button">Написать</button>
             </div>
         </div>`
-        : ''
+    : ''
 
-    const appHtml = `
+  const appHtml = `
 <div class="container">
     <ul id="list" class="comments">${commentsHtml}</ul>
     <div id="add-comment" class="add-comment-text ${isAuthorized ? 'hidden' : ''}">Чтобы добавить комментарий, <span class = "authorize-word">авторизуйтесь</span></div>
     ${addFormHtml}
   </div>
 `
-    appElement.innerHTML = appHtml
+  appElement.innerHTML = appHtml
 
-    const authorizeWordElement = document.querySelector('.authorize-word')
-    authorizeWordElement.addEventListener('click', renderLogin)
+  const authorizeWordElement = document.querySelector('.authorize-word')
+  authorizeWordElement.addEventListener('click', renderLogin)
 
-    const buttonElement = document.getElementById('write-button')
-    if (buttonElement) {
-        buttonElement.addEventListener('click', handlePostClick)
-    }
+  const buttonElement = document.getElementById('write-button')
+  if (buttonElement) {
+    buttonElement.addEventListener('click', handlePostClick)
+  }
 
-    attachLikeButtonHandler(commentsData)
-    initEditComments(commentsData)
+  attachLikeButtonHandler(commentsData, isAuthenticated, isAuthorized, userName)
+  initEditComments(commentsData, isAuthenticated, isAuthorized, userName)
 }
