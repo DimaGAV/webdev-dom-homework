@@ -47,6 +47,7 @@ export function renderComments(
 
   const appHtml = `
 <div class="container">
+<div class="loading">Пожалуйста подождите, загружаю комментарии...</div>
     <ul id="list" class="comments">${commentsHtml}</ul>
     <div id="add-comment" class="add-comment-text ${isAuthorized ? 'hidden' : ''}">Чтобы добавить комментарий, <span class = "authorize-word">авторизуйтесь</span></div>
     ${addFormHtml}

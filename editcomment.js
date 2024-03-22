@@ -1,4 +1,4 @@
-export function initEditComments(commentsData, isAuthenticated, isAuthorized,userName) {
+export function initEditComments(commentsData, isAuthenticated, isAuthorized) {
   if (isAuthenticated === true && isAuthorized === true) {
     const textAreaElement = document.getElementById('text-input')
     const editComments = document.querySelectorAll('.comment')
@@ -10,5 +10,5 @@ export function initEditComments(commentsData, isAuthenticated, isAuthorized,use
         textAreaElement.value = `${commentAuthor}\n${commentText}\n\n`
       })
     }
-  }
+  } 
 }
