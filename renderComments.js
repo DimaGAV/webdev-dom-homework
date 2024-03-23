@@ -2,10 +2,12 @@ import { attachLikeButtonHandler } from './likebuttons.js'
 import { initEditComments } from './editcomment.js'
 import { handlePostClick } from './handlepostclick.js'
 import { renderLogin } from './renderLogin.js'
+import { isInitialLoading } from './main.js'
 export function renderComments(
   commentsData,
   isAuthenticated,
   isAuthorized,
+  isInitialLoading,
   userName,
 ) {
   const appElement = document.getElementById('app')
@@ -47,15 +49,20 @@ export function renderComments(
 
   const appHtml = `
 <div class="container">
-<div class="loading">Пожалуйста подождите, загружаю комментарии...</div>
     <ul id="list" class="comments">${commentsHtml}</ul>
     <div id="add-comment" class="add-comment-text ${isAuthorized ? 'hidden' : ''}">Чтобы добавить комментарий, <span class = "authorize-word">авторизуйтесь</span></div>
     ${addFormHtml}
   </div>
 `
-  appElement.innerHTML = appHtml
+if (isInitialLoading) {
+  document.querySelector('.container').textContent =
+    'Пожалуйста подождите, загружаю комментарии...'
+  return
+}
+  
+appElement.innerHTML = appHtml
 
-  const authorizeWordElement = document.querySelector('.authorize-word')
+    const authorizeWordElement = document.querySelector('.authorize-word')
   authorizeWordElement.addEventListener('click', renderLogin)
 
   const buttonElement = document.getElementById('write-button')

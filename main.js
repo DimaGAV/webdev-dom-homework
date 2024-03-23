@@ -5,6 +5,7 @@ import { userName } from './renderLogin.js'
 let commentsData = []
 export let isAuthenticated = false
 let isAuthorized = false
+export let isInitialLoading = true
 export { commentsData }
 
-fetchAndCommentsRender(commentsData, isAuthenticated, isAuthorized, userName)
+fetchAndCommentsRender(commentsData, isAuthenticated, isAuthorized, isInitialLoading, userName)

@@ -1,16 +1,15 @@
 import { format } from 'date-fns'
 import { getListElements } from './api.js'
 import { renderComments } from './renderComments.js'
-import { loadingElement } from './varexp.js'
-
 
 export function fetchAndCommentsRender(
   commentsData,
   isAuthenticated,
   isAuthorized,
+  isInitialLoading,
   userName,
 ) {
-    getListElements().then((responseData) => {
+  getListElements().then((responseData) => {
     
     const appComments = responseData.comments.map((comment) => {
       const createDate = format(new Date(comment.date), 'yyyy-MM-dd hh.mm.ss')
@@ -23,13 +22,16 @@ export function fetchAndCommentsRender(
         isLiked: false,
       }
     })
-
-    commentsData = appComments
-
-    renderComments(commentsData, isAuthenticated, isAuthorized, userName)
     
-    const loadingElement = document.querySelector('.loading')
-        console.log(loadingElement);
-      loadingElement.style.display = 'none'
+    // commentsData = appComments
+  isInitialLoading = false
+    
+    renderComments(
+      appComments,
+      isAuthenticated,
+      isAuthorized,
+      isInitialLoading,
+      userName,
+    )
   })
 }
